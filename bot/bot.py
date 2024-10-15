@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 import re
 from dotenv import load_dotenv
 import os
@@ -87,11 +88,11 @@ def addphone(update: Update, context: CallbackContext):
     # Подключение к базе данных и сохранение номеров
     try:
         connection = psycopg2.connect(
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            host=os.getenv('DB_HOST'),
-            port=os.getenv('DB_PORT'),
-            database=os.getenv('DATABASE')
+            user=os.getenv('USER_DB'),
+            password=os.getenv('PASSWORD_DB'),
+            host=os.getenv('HOST_DB'),
+            port=os.getenv('PORT_DB'),
+            database=os.getenv('DATABASE_DB')
         )
         cursor = connection.cursor()
 
@@ -149,11 +150,11 @@ def addEmail(update: Update, context: CallbackContext):
     # Подключение к базе данных и сохранение адресов
     try:
         connection = psycopg2.connect(
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            host=os.getenv('DB_HOST'),
-            port=os.getenv('DB_PORT'),
-            database=os.getenv('DATABASE')
+            user=os.getenv('USER_DB'),
+            password=os.getenv('PASSWORD_DB'),
+            host=os.getenv('HOST_DB'),
+            port=os.getenv('PORT_DB'),
+            database=os.getenv('DATABASE_DB')
         )
         cursor = connection.cursor()
 
@@ -410,11 +411,11 @@ def getrepllogs (update: Update, context):
 def getemails(update: Update, context):
     connection = None
     try:
-        connection = psycopg2.connect(user=os.getenv('DB_USER'),
-                                      password=os.getenv('DB_PASSWORD'),    
-                                      host=os.getenv('DB_HOST'),
-                                      port=os.getenv('DB_PORT'),
-                                      database=os.getenv('DATABASE'))
+        connection = psycopg2.connect(user=os.getenv('USER_DB'),
+                                      password=os.getenv('PASSWORD_DB'),    
+                                      host=os.getenv('HOST_DB'),
+                                      port=os.getenv('PORT_DB'),
+                                      database=os.getenv('DATABASE_DB'))
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM emails;")
         data = cursor.fetchall()
@@ -433,11 +434,11 @@ def getemails(update: Update, context):
 def getphonenumbers(update: Update, context):
     connection = None
     try:
-        connection = psycopg2.connect(user=os.getenv('DB_USER'),
-                                      password=os.getenv('DB_PASSWORD'),    
-                                      host=os.getenv('DB_HOST'),
-                                      port=os.getenv('DB_PORT'),
-                                      database=os.getenv('DATABASE'))
+        connection = psycopg2.connect(user=os.getenv('USER_DB'),
+                                      password=os.getenv('PASSWORD_DB'),    
+                                      host=os.getenv('HOST_DB'),
+                                      port=os.getenv('PORT_DB'),
+                                      database=os.getenv('DATABASE_DB'))
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM phones;")
         data = cursor.fetchall()
